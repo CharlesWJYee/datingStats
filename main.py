@@ -1,9 +1,9 @@
 import readCSV
-import Calculation
+from Calculation import Calculation
 
 BASELINE_MEN = 62500
 BASELINE_WOMEN = 42500
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 
 def displayDicts(dictDict):
@@ -28,7 +28,14 @@ if __name__ == '__main__':
         print("Ethnicity when women looking for men:")
         displayDicts(ethnicityMen)
 
-    c1 = Calculation("m", 7.0, '5\'10"', "asian", "white", looksTab, heightTab, ethnicityWomen, ethnicityMen)
-    print(c1.Calculate())
+    sex = "male"
+    oppositeSex = "woman"
+    looks = 10.0
+    height = '5\'11"'
+    ethnicity = "asian"
+    targetEthnicity = "white"
+    c1 = Calculation.Calculation(sex, looks, height, ethnicity, targetEthnicity, looksTab, heightTab, ethnicityWomen, ethnicityMen)
+    print("For a " + height + " tall " + sex + " who is " + ethnicity + " and a " + str(int(looks)) + "/10, looking for a "
+          + targetEthnicity + " " + oppositeSex + ", you must be earning $" + str(c1.Calculate()) + " a year")
 
-    print("Program finished")
+    #print("Program finished")

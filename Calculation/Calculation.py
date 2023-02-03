@@ -13,21 +13,21 @@ class Calculation:
         self.looksTab = looksTab
         self.heightTab = heightTab
 
-        if self.sex.lower() == "m":
+        if self.sex.lower() == "m" or self.sex.lower() == "male":
             self.ethnicityTab = ethnicityTabW
             self.baseline = main.BASELINE_MEN
-        elif self.sex.lower() == "f":
+        elif self.sex.lower() == "f" or self.sex.lower() == "female":
             self.ethnicityTab = ethnicityTabM
             self.baseline = main.BASELINE_WOMEN
         else:
-            print("The sex entered is wrong. Must be m/f")
+            print("The sex entered is wrong. Must be m/f/male/female")
             sys.exit()
 
     def Calculate(self):
-        if self.sex.lower() == "m":
+        if self.sex.lower() == "m" or self.sex.lower() == "male":
             mySexStr = "Men"
             oppositeSexStr = "Women"
-        if self.sex.lower() == "f":
+        elif self.sex.lower() == "f" or self.sex.lower() == "female":
             mySexStr = "Women"
             oppositeSexStr = "Men"
 
