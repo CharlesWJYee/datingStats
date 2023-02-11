@@ -1,5 +1,6 @@
 import readCSV
 from Calculation import Calculation
+import sys
 
 BASELINE_MEN = 62500
 BASELINE_WOMEN = 42500
@@ -11,8 +12,19 @@ def displayDicts(dictDict):
         print(d)
         print(dictDict[d])
 
-
+# python main.py male 7 '6\'2"' White White woman
 if __name__ == '__main__':
+    if len(sys.argv) != 7:
+        print("Incorrect number of arguments. Usage: python main.py <sex> <looks> <height> <ethnicity> <targetEthnicity> <oppositeSex>")
+        sys.exit(1)
+    
+    sex = sys.argv[1]
+    looks = float(sys.argv[2])
+    height = sys.argv[3]
+    ethnicity = sys.argv[4]
+    targetEthnicity = sys.argv[5]
+    oppositeSex = sys.argv[6]
+
     looksTab = readCSV.readCSVtoDict("looks")
     heightTab = readCSV.readCSVtoDict("height")
     ethnicityWomen = readCSV.readCSVtoDict("ethnicityTargetWomen")
@@ -28,12 +40,6 @@ if __name__ == '__main__':
         print("Ethnicity when women looking for men:")
         displayDicts(ethnicityMen)
 
-    sex = "male"
-    oppositeSex = "woman"
-    looks = 10.0
-    height = '5\'11"'
-    ethnicity = "asian"
-    targetEthnicity = "white"
     c1 = Calculation.Calculation(sex, looks, height, ethnicity, targetEthnicity, looksTab, heightTab, ethnicityWomen, ethnicityMen)
     print("For a " + height + " tall " + sex + " who is " + ethnicity + " and a " + str(int(looks)) + "/10, looking for a "
           + targetEthnicity + " " + oppositeSex + ", you must be earning $" + str(c1.Calculate()) + " a year")
