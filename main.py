@@ -4,7 +4,7 @@ import sys
 
 BASELINE_MEN = 62500
 BASELINE_WOMEN = 42500
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 
 def displayDicts(dictDict):
@@ -12,7 +12,7 @@ def displayDicts(dictDict):
         print(d)
         print(dictDict[d])
 
-# python main.py male 7 '6\'2"' White White woman
+# python main.py male 7 74.0 White White woman
 if __name__ == '__main__':
     if len(sys.argv) != 7:
         print("Incorrect number of arguments. Usage: python main.py <sex> <looks> <height> <ethnicity> <targetEthnicity> <oppositeSex>")
@@ -41,7 +41,7 @@ if __name__ == '__main__':
         displayDicts(ethnicityMen)
 
     c1 = Calculation.Calculation(sex, looks, height, ethnicity, targetEthnicity, looksTab, heightTab, ethnicityWomen, ethnicityMen)
-    print("For a " + height + " tall " + sex + " who is " + ethnicity + " and a " + str(int(looks)) + "/10, looking for a "
+    print("For a " + height + " inches tall " + sex + " who is " + ethnicity + " and a " + str(int(looks)) + "/10, looking for a "
           + targetEthnicity + " " + oppositeSex + ", you must be earning $" + str(c1.Calculate()) + " a year")
 
     #print("Program finished")

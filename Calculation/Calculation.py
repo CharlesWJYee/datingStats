@@ -1,13 +1,13 @@
 import sys
 import main
-
+# now we must take height in inches instead of string
 
 class Calculation:
     def __init__(self, sex, looks, height, ethnicity, targetEthnicity, looksTab, heightTab, ethnicityTabW,
                  ethnicityTabM):
         self.sex = sex
-        self.looks = looks
-        self.height = height
+        self.looks = int(looks)
+        self.height = int(height)
         self.ethnicity = ethnicity
         self.targetEthnicity = targetEthnicity
         self.looksTab = looksTab
