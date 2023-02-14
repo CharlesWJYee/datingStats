@@ -1,10 +1,11 @@
 Looks Rating,Additional Income Needed by Men 1,Additional Income Needed by Men 2,Additional Income Needed by Men 3,Additional Income Needed by Men 4,Additional Income Needed by Men 5,Additional Income Needed by Men 6,Additional Income Needed by Men 7,Additional Income Needed by Men 8,Additional Income Needed by Men 9,Additional Income Needed by Men 10
-Woman 1,143,128,86,37,25,0,0,0,0,0
-Woman 2,151,143,128,86,37,25,0,0,0,0
-Woman 3,159,151,143,128,86,37,25,0,0,0
-Woman 4,169,159,151,143,128,86,37,25,0,0
-Woman 5,186,169,159,151,143,128,86,37,25,0
-Woman 7,260,215,186,169,159,151,143,128,86,37
-Woman 8,311,260,215,186,169,159,151,143,128,86
-Woman 9,386,311,260,215,186,169,159,151,143,128
-Woman 10,500,386,311,260,215,186,169,159,151,143
+Women 1,143,128,86,37,25,11,-11,-36,-73,-130
+Women 2,151,143,128,86,37,25,11,-11,-36,-73
+Women 3,159,151,143,128,86,37,25,11,-11,-36
+Women 4,169,159,151,143,128,86,37,25,11,-11
+Women 5,186,169,159,151,143,128,86,37,25,11
+Women 6,215,186,169,159,151,143,128,86,37,25
+Women 7,260,215,186,169,159,151,143,128,86,37
+Women 8,311,260,215,186,169,159,151,143,128,86
+Women 9,386,311,260,215,186,169,159,151,143,128
+Women 10,500,386,311,260,215,186,169,159,151,143

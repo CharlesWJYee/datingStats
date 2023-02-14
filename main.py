@@ -4,7 +4,7 @@ import sys
 
 BASELINE_MEN = 62500
 BASELINE_WOMEN = 42500
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 
 def displayDicts(dictDict):
@@ -12,7 +12,7 @@ def displayDicts(dictDict):
         print(d)
         print(dictDict[d])
 
-# python main.py male 7 74.0 White White woman
+# python main.py male 7 74 White White woman
 if __name__ == '__main__':
     if len(sys.argv) != 7:
         print("Incorrect number of arguments. Usage: python main.py <sex> <looks> <height> <ethnicity> <targetEthnicity> <oppositeSex>")
