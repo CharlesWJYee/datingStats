@@ -40,6 +40,8 @@ if __name__ == '__main__':
     parser.add_argument("-tamin","--target-age-min", default=18, type=int, help="target Age min")
     parser.add_argument("-tamax","--target-age-max", default=35, type=int, help="target Age max")
     parser.add_argument("-tedu","--target-education", default='high-school',  choices=EDUCATION_OPTIONS, type=str, help="target education attained")
+    parser.add_argument("-tlmin","--target-looks-min", default=5, type=int, help="target Looks min")
+    parser.add_argument("-tlmax","--target-looks-max", default=10, type=int, help="target Looks max")
 
 
     parser.add_argument("--api",  default=False, help="output just the values", action='store_true')
@@ -57,7 +59,11 @@ if __name__ == '__main__':
     looks = args.looks
     height = args.height
     ethnicity = args.ethnicity
+
     targetEthnicity = args.target_ethnicity
+    targetLooksMin = args.target_looks_min
+    targetLooksMax = args.target_looks_max
+
     oppositeSex = 'woman' if args.sex == 'male' else 'men'
 
 
