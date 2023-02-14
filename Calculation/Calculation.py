@@ -3,21 +3,35 @@ import main
 # now we must take height in inches instead of string
 
 class Calculation:
-    def __init__(self, sex, looks, height, ethnicity, targetEthnicity, looksTab, heightTab, ethnicityTabW,
-                 ethnicityTabM):
+    def __init__(self, 
+        #User attributes
+        sex, looks, height, ethnicity,
+        #Target attributes
+        targetEthnicity, targetLooksMin, targetLooksMax,
+        # CSV Dict
+        looksTab, heightTab, ethnicityTabW, ethnicityTabM,  looksTargetMen, looksTargetWomen):
+        #user Attributes
         self.sex = sex
         self.looks = int(looks)
         self.height = int(height)
         self.ethnicity = ethnicity
+        #target attributes
         self.targetEthnicity = targetEthnicity
-        self.looksTab = looksTab
+        self.targetLooksMin =targetLooksMin
+        self.targetLooksMax = targetLooksMax
+    
+        # self.looksTab = looksTab
         self.heightTab = heightTab
+        self.looksTargetMen = looksTargetMen
+        self.looksTargetWomen = looksTargetWomen
 
         if self.sex.lower() == "m" or self.sex.lower() == "male":
             self.ethnicityTab = ethnicityTabW
+            self.looksTab = looksTargetWomen
             self.baseline = main.BASELINE_MEN
         elif self.sex.lower() == "f" or self.sex.lower() == "female":
             self.ethnicityTab = ethnicityTabM
+            self.looksTab = looksTargetMen
             self.baseline = main.BASELINE_WOMEN
         else:
             print("The sex entered is wrong. Must be m/f/male/female")
@@ -31,7 +45,11 @@ class Calculation:
             mySexStr = "Women"
             oppositeSexStr = "Men"
 
-        looksAdj = self.looksTab["Additional Income Needed by " + mySexStr][self.looks]
+        # looksAdj = self.looksTab["Additional Income Needed by " + mySexStr][self.looks]
+        looksAdjMin = self.looksTab["Additional Income Needed by " + mySexStr + " " + str(self.looks)][oppositeSexStr + ' ' + str(self.targetLooksMin)]
+        looksAdjMax = self.looksTab["Additional Income Needed by " + mySexStr + " " + str(self.looks)][oppositeSexStr + ' ' + str(self.targetLooksMax)]
+        
+
         heightAdj = self.heightTab["Additional Income Needed by " + mySexStr][self.height]
 
         if self.ethnicity.lower() == "white":
@@ -60,4 +78,4 @@ class Calculation:
 
         ethnicityAdj = self.ethnicityTab["Additional Income Needed by " + myRaceStr][targetRaceStr]
 
-        return self.baseline + looksAdj + heightAdj + ethnicityAdj
+        return [self.baseline + looksAdjMin + heightAdj + ethnicityAdj, self.baseline + looksAdjMax + heightAdj + ethnicityAdj]

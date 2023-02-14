@@ -71,6 +71,8 @@ if __name__ == '__main__':
     heightTab = readCSV.readCSVtoDict("height")
     ethnicityWomen = readCSV.readCSVtoDict("ethnicityTargetWomen")
     ethnicityMen = readCSV.readCSVtoDict("ethnicityTargetMen")
+    looksTargetMen = readCSV.readCSVtoDict("looksTargetMen")
+    looksTargetWomen = readCSV.readCSVtoDict("looksTargetWomen")
 
     if DEBUG_MODE and not API_MODE:
         print("Looks:")
@@ -82,14 +84,23 @@ if __name__ == '__main__':
         print("Ethnicity when women looking for men:")
         displayDicts(ethnicityMen)
 
-    c1 = Calculation.Calculation(sex, looks, height, ethnicity, targetEthnicity, looksTab, heightTab, ethnicityWomen, ethnicityMen)
+    c1 = Calculation.Calculation(
+        sex, looks, height, ethnicity, 
+        #target 
+        targetEthnicity, targetLooksMin, targetLooksMax,
+        
+        # csv dicts
+        looksTab, heightTab, ethnicityWomen, ethnicityMen, looksTargetMen, looksTargetWomen)
+    output = c1.Calculate()
+    
     if API_MODE:
         output = {
-            "result": c1.Calculate()
+            "result": output
         }
         print(json.dumps(output))
     else:
+
         print("For a " + str(height) + " inches tall " + sex + " who is " + ethnicity + " and a " + str(looks) + "/10, looking for a "
-            + targetEthnicity + " " + oppositeSex + ", you must be earning $" + f'{c1.Calculate():n}' + " a year")
+            + targetEthnicity + " " + oppositeSex + ", you must be earning $" + f'{output[0]:n} - {output[1]:n}' + " a year")
 
     #print("Program finished")
