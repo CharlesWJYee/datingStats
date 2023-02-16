@@ -4,23 +4,23 @@ import main
 
 class Calculation:
     def __init__(self, 
-        #User attributes
+        # User attributes
         sex, looks, height, ethnicity,
-        #Target attributes
+        # Target attributes
         targetEthnicity, targetLooksMin, targetLooksMax,
-        # CSV Dict
-        looksTab, heightTab, ethnicityTabW, ethnicityTabM,  looksTargetMen, looksTargetWomen):
-        #user Attributes
+        # CSV Dictionaries
+        heightTab, ethnicityTabW, ethnicityTabM, looksTargetMen, looksTargetWomen):
+
+        # User Attributes
         self.sex = sex
         self.looks = int(looks)
         self.height = int(height)
         self.ethnicity = ethnicity
-        #target attributes
+        # Target attributes
         self.targetEthnicity = targetEthnicity
-        self.targetLooksMin =targetLooksMin
+        self.targetLooksMin = targetLooksMin
         self.targetLooksMax = targetLooksMax
-    
-        # self.looksTab = looksTab
+        # Dictionaries
         self.heightTab = heightTab
         self.looksTargetMen = looksTargetMen
         self.looksTargetWomen = looksTargetWomen
