@@ -5,7 +5,7 @@ import main
 class Calculation:
     def __init__(self, 
         # User attributes
-        sex, looks, height, ethnicity,
+        sex, oppositeSex, looks, height, ethnicity,
         # Target attributes
         targetEthnicity, targetLooksMin, targetLooksMax,
         # CSV Dictionaries
@@ -13,6 +13,7 @@ class Calculation:
 
         # User Attributes
         self.sex = sex
+        self.oppositeSex = oppositeSex
         self.looks = int(looks)
         self.height = int(height)
         self.ethnicity = ethnicity
@@ -25,30 +26,25 @@ class Calculation:
         self.looksTargetMen = looksTargetMen
         self.looksTargetWomen = looksTargetWomen
 
-        if self.sex.lower() == "m" or self.sex.lower() == "male":
+        if self.sex.lower() == "m" or self.sex.lower() == "man":
             self.ethnicityTab = ethnicityTabW
             self.looksTab = looksTargetWomen
             self.baseline = main.BASELINE_MEN
-        elif self.sex.lower() == "f" or self.sex.lower() == "female":
+        elif self.sex.lower() == "f" or self.sex.lower() == "woman":
             self.ethnicityTab = ethnicityTabM
             self.looksTab = looksTargetMen
             self.baseline = main.BASELINE_WOMEN
         else:
-            print("The sex entered is wrong. Must be m/f/male/female")
+            print("The sex entered is wrong. Must be m/f or man/woman")
             sys.exit()
 
     def Calculate(self):
-        if self.sex.lower() == "m" or self.sex.lower() == "male":
-            mySexStr = "Men"
-            oppositeSexStr = "Women"
-        elif self.sex.lower() == "f" or self.sex.lower() == "female":
-            mySexStr = "Women"
-            oppositeSexStr = "Men"
+        mySexStr = self.sex.replace("a", "e").capitalize()
+        oppositeSexStr = self.oppositeSex.replace("a", "e").capitalize()
 
         # looksAdj = self.looksTab["Additional Income Needed by " + mySexStr][self.looks]
         looksAdjMin = self.looksTab["Additional Income Needed by " + mySexStr + " " + str(self.looks)][oppositeSexStr + ' ' + str(self.targetLooksMin)]
         looksAdjMax = self.looksTab["Additional Income Needed by " + mySexStr + " " + str(self.looks)][oppositeSexStr + ' ' + str(self.targetLooksMax)]
-        
 
         heightAdj = self.heightTab["Additional Income Needed by " + mySexStr][self.height]
 

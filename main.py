@@ -1,6 +1,5 @@
 import readCSV
 from Calculation import Calculation
-import sys
 import locale
 import argparse
 import json
@@ -24,7 +23,7 @@ def displayDicts(dictDict):
 
 def buildParser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--sex", default='male', choices=['male', 'female'], type=str, help="sex of the person")
+    parser.add_argument("-s", "--sex", default='man', choices=['man', 'woman'], type=str, help="sex of the person")
     parser.add_argument("-l", "--looks", default=5, type=int, help="looks of the person on a scale of 1 to 10")
     parser.add_argument("-height", "--height", default=69, type=int, help="height of the person")
     parser.add_argument("-e", "--ethnicity", default='white', choices=ETHNICITY_OPTIOONS, type=str,
@@ -53,7 +52,7 @@ def buildParser():
     return parser
 
 
-# python main.py -s male -l 7 -height 74 -e white -te white -tlmin 6 -tlmax 10
+# python main.py -s man -l 7 -height 74 -e white -te white -tlmin 6 -tlmax 10
 if __name__ == '__main__':
     args = buildParser().parse_args()
 
@@ -65,6 +64,7 @@ if __name__ == '__main__':
         print(args)
 
     sex = args.sex
+    oppositeSex = 'woman' if sex == 'man' else 'man'
     looks = args.looks
     height = args.height
     ethnicity = args.ethnicity
@@ -72,8 +72,6 @@ if __name__ == '__main__':
     targetEthnicity = args.target_ethnicity
     targetLooksMin = args.target_looks_min
     targetLooksMax = args.target_looks_max
-
-    oppositeSex = 'woman' if args.sex == 'male' else 'men'
 
     # looksTab = readCSV.readCSVtoDict("looks")
     heightTab = readCSV.readCSVtoDict("height")
@@ -95,7 +93,7 @@ if __name__ == '__main__':
         displayDicts(ethnicityTargetMenTab)
 
     c1 = Calculation.Calculation(
-        sex, looks, height, ethnicity,
+        sex, oppositeSex, looks, height, ethnicity,
         # target
         targetEthnicity, targetLooksMin, targetLooksMax,
         # csv dicts
@@ -107,8 +105,8 @@ if __name__ == '__main__':
             "result": output
         }
         print(json.dumps(output))
-    else:
 
+    else:
         print("For a " + str(height) + " inches tall " + sex + " who is " + ethnicity + " and a " + str(
             looks) + "/10, looking for a "
               + targetEthnicity + " " + oppositeSex + ", you must be earning $" + f'{output[0]:n} - {output[1]:n}' + " a year")
