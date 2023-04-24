@@ -52,7 +52,7 @@ def buildParser():
     return parser
 
 
-# python main.py -s man -l 7 -height 74 -e white -te white -tlmin 6 -tlmax 10
+# python main.py -s man -l 7 -height 74 -e white -te white -tlmin 6 -tlmax 10 -thmin 66 -thmax 74
 if __name__ == '__main__':
     args = buildParser().parse_args()
 
@@ -72,17 +72,23 @@ if __name__ == '__main__':
     targetEthnicity = args.target_ethnicity
     targetLooksMin = args.target_looks_min
     targetLooksMax = args.target_looks_max
+    targetHeightMin = args.target_height_min
+    targetHeightMax = args.target_height_max
 
     # looksTab = readCSV.readCSVtoDict("looks")
-    heightTab = readCSV.readCSVtoDict("height")
+    # heightTab = readCSV.readCSVtoDict("height")
     ethnicityTargetWomenTab = readCSV.readCSVtoDict("ethnicityTargetWomen")
     ethnicityTargetMenTab = readCSV.readCSVtoDict("ethnicityTargetMen")
     looksTargetWomenTab = readCSV.readCSVtoDict("looksTargetWomen")
     looksTargetMenTab = readCSV.readCSVtoDict("looksTargetMen")
+    heightTargetWomenTab = readCSV.readCSVtoDict("heightTargetWomen")
+    heightTargetMenTab = readCSV.readCSVtoDict("heightTargetMen")
 
     if DEBUG_MODE and not API_MODE:
-        print("Height:")
-        displayDicts(heightTab)
+        print("Height when men looking for women:")
+        displayDicts(heightTargetWomenTab)
+        print("Height when women looking for men:")
+        displayDicts(heightTargetMenTab)
         print("Looks when men looking for women:")
         displayDicts(looksTargetWomenTab)
         print("Looks when women looking for men:")
@@ -95,9 +101,9 @@ if __name__ == '__main__':
     c1 = Calculation.Calculation(
         sex, oppositeSex, looks, height, ethnicity,
         # target
-        targetEthnicity, targetLooksMin, targetLooksMax,
+        targetLooksMin, targetLooksMax, targetHeightMin, targetHeightMax, targetEthnicity,
         # csv dicts
-        heightTab, ethnicityTargetWomenTab, ethnicityTargetMenTab, looksTargetMenTab, looksTargetWomenTab)
+        looksTargetMenTab, looksTargetWomenTab, heightTargetMenTab, heightTargetWomenTab, ethnicityTargetMenTab, ethnicityTargetWomenTab)
     output = c1.Calculate()
 
     if API_MODE:
