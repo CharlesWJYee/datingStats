@@ -11,7 +11,7 @@ class Calculation:
                  # Target attributes
                  targetLooksMin, targetLooksMax, targetHeightMin, targetHeightMax, targetEthnicity,
                  # CSV Dictionaries
-                 looksTargetMen, looksTargetWomen, heightTargetMen, heightTargetWomen, ethnicityTabM, ethnicityTabW, ):
+                 looksTargetMen, looksTargetWomen, heightTargetMen, heightTargetWomen, ethnicityTabM, ethnicityTabW):
 
         # User Attributes
         self.sex = sex
@@ -49,7 +49,6 @@ class Calculation:
         mySexStr = self.sex.replace("a", "e").capitalize()
         oppositeSexStr = self.oppositeSex.replace("a", "e").capitalize()
 
-        # looksAdj = self.looksTab["Additional Income Needed by " + mySexStr][self.looks]
         looksAdjMin = self.looksTab["Additional Income Needed by " + mySexStr + " " + str(self.looks)][
             oppositeSexStr + ' ' + str(self.targetLooksMin)]
         looksAdjMax = self.looksTab["Additional Income Needed by " + mySexStr + " " + str(self.looks)][

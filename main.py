@@ -75,8 +75,6 @@ if __name__ == '__main__':
     targetHeightMin = args.target_height_min
     targetHeightMax = args.target_height_max
 
-    # looksTab = readCSV.readCSVtoDict("looks")
-    # heightTab = readCSV.readCSVtoDict("height")
     ethnicityTargetWomenTab = readCSV.readCSVtoDict("ethnicityTargetWomen")
     ethnicityTargetMenTab = readCSV.readCSVtoDict("ethnicityTargetMen")
     looksTargetWomenTab = readCSV.readCSVtoDict("looksTargetWomen")
@@ -115,6 +113,8 @@ if __name__ == '__main__':
     else:
         print("For a " + str(height) + " inches tall " + sex + " who is " + ethnicity + " and a " + str(
             looks) + "/10, looking for a "
-              + targetEthnicity + " " + oppositeSex + ", you must be earning $" + f'{output[0]:n} - {output[1]:n}' + " a year")
+              + targetEthnicity + " " + str(targetLooksMin) + "/10 - " + str(targetLooksMax) + "/10 "
+              + oppositeSex + " between " + str(targetHeightMin) + " and " + str(targetHeightMax) + " inches" +
+              ", you must be earning $" + f'{output[0]:n} - {output[1]:n}' + " a year")
 
     # print("Program finished")
