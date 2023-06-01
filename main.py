@@ -10,7 +10,7 @@ BASELINE_MEN = 62500
 BASELINE_WOMEN = 42500
 EDUCATION_OPTIONS = ['high-school', 'some-college', 'college-bachlors', 'college-masters', 'college-phd',
                      'professional']
-ETHNICITY_OPTIOONS = ['white', 'black', 'asian', 'hispanic']
+ETHNICITY_OPTIONS = ['white', 'black', 'asian', 'hispanic']
 DEBUG_MODE = False
 API_MODE = False
 
@@ -26,16 +26,16 @@ def buildParser():
     parser.add_argument("-s", "--sex", default='man', choices=['man', 'woman'], type=str, help="sex of the person")
     parser.add_argument("-l", "--looks", default=5, type=int, help="looks of the person on a scale of 1 to 10")
     parser.add_argument("-height", "--height", default=69, type=int, help="height of the person")
-    parser.add_argument("-e", "--ethnicity", default='white', choices=ETHNICITY_OPTIOONS, type=str,
+    parser.add_argument("-e", "--ethnicity", default='white', choices=ETHNICITY_OPTIONS, type=str,
                         help="ethnicity of the person")
     parser.add_argument("-w", "--weight", default=190, type=int, help="weight in lbs")
     parser.add_argument("-a", "--age", default=21, type=int, help="age")
     parser.add_argument("-edu", "--education", default='high-school', choices=EDUCATION_OPTIONS, type=str,
                         help="Education attained")
 
-    parser.add_argument("-te", "--target-ethnicity", default='white', choices=ETHNICITY_OPTIOONS, type=str,
+    parser.add_argument("-te", "--target-ethnicity", default='white', choices=ETHNICITY_OPTIONS, type=str,
                         help="target ethnicity of the person")
-    parser.add_argument("-thmin", "--target-height-min", default=48, type=int, help="target height min in inches")
+    parser.add_argument("-thmin", "--target-height-min", default=60, type=int, help="target height min in inches")
     parser.add_argument("-thmax", "--target-height-max", default=72, type=int, help="target height max in inches")
     parser.add_argument("-twmin", "--target-weight-min", default=70, type=int, help="target weight min in lbs")
     parser.add_argument("-twmax", "--target-weight-max", default=150, type=int, help="target weight max in lbs")

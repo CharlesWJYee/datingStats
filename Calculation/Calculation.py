@@ -1,8 +1,16 @@
 import sys
+
 import main
 
 
 # now we must take height in inches instead of string
+def clamp(n, minn, maxn):
+    return max(min(maxn, n), minn)
+
+
+HEIGHT_MAX = 82
+HEIGHT_MIN = 60
+
 
 class Calculation:
     def __init__(self,
@@ -17,14 +25,14 @@ class Calculation:
         self.sex = sex
         self.oppositeSex = oppositeSex
         self.looks = int(looks)
-        self.height = int(height)
+        self.height = clamp(int(height), HEIGHT_MIN, HEIGHT_MAX)
         self.ethnicity = ethnicity
         # Target attributes
         self.targetEthnicity = targetEthnicity
-        self.targetLooksMin = targetLooksMin
-        self.targetLooksMax = targetLooksMax
-        self.targetHeightMin = targetHeightMin
-        self.targetHeightMax = targetHeightMax
+        self.targetLooksMin = clamp(targetLooksMin, 0, 10)
+        self.targetLooksMax = clamp(targetLooksMax, 0, 10)
+        self.targetHeightMin = clamp(targetHeightMin, HEIGHT_MIN, HEIGHT_MAX)
+        self.targetHeightMax = clamp(targetHeightMax, HEIGHT_MIN, HEIGHT_MAX)
         # Dictionaries
         self.heightTargetMen = heightTargetMen
         self.heightTargetWomen = heightTargetWomen
