@@ -93,5 +93,29 @@ class Calculation:
 
         ethnicityAdj = self.ethnicityTab["Additional Income Needed by " + myRaceStr][targetRaceStr]
 
+        findMaxAdj(looksAdjMax, heightAdjMax, ethnicityAdj)
+
         return [self.baseline + looksAdjMin + heightAdjMin + ethnicityAdj,
                 self.baseline + looksAdjMax + heightAdjMax + ethnicityAdj]
+
+
+def findMaxAdj(looks, height, ethnicity):
+    """
+    Finds the maximum adjustment amongst all parameters and prompt on what is the biggest influencer on income needed to
+    be as desirable
+    :param looks: looksAdjMax
+    :param height: heightAdjMax
+    :param ethnicity: ethinicityAdj
+    :return: prompts only, but may also return the amount if needed (currently not used)
+    """
+    if looks > height and looks > ethnicity:
+        print("$" + str(
+            looks) + " of the increase in income are compensating for your lack of looks compared to your target")
+        return looks
+    elif height > looks and height > ethnicity:
+        print("$" + str(height) + " of the increase in income are compensating for your lack of height")
+        return height
+    elif ethnicity > looks and ethnicity > height:
+        print("Unfortunately, your race is less desired by members of your target's race and you must make $"
+              + ethnicity + " more per year to be desirable.")
+        return ethnicity
