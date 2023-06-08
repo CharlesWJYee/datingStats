@@ -102,7 +102,7 @@ if __name__ == '__main__':
         targetLooksMin, targetLooksMax, targetHeightMin, targetHeightMax, targetEthnicity,
         # csv dicts
         looksTargetMenTab, looksTargetWomenTab, heightTargetMenTab, heightTargetWomenTab, ethnicityTargetMenTab, ethnicityTargetWomenTab)
-    output = c1.Calculate()
+    output = c1.Calculate(API_MODE)
 
     if API_MODE:
         output = {

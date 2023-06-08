@@ -53,7 +53,7 @@ class Calculation:
             print("The sex entered is wrong. Must be m/f or man/woman")
             sys.exit()
 
-    def Calculate(self):
+    def Calculate(self, api_mode):
         mySexStr = self.sex.replace("a", "e").capitalize()
         oppositeSexStr = self.oppositeSex.replace("a", "e").capitalize()
 
@@ -93,29 +93,32 @@ class Calculation:
 
         ethnicityAdj = self.ethnicityTab["Additional Income Needed by " + myRaceStr][targetRaceStr]
 
-        findMaxAdj(looksAdjMax, heightAdjMax, ethnicityAdj)
+        maxAdj = findMaxAdj(looksAdjMax, heightAdjMax, ethnicityAdj, api_mode)
 
         return [self.baseline + looksAdjMin + heightAdjMin + ethnicityAdj,
-                self.baseline + looksAdjMax + heightAdjMax + ethnicityAdj]
+                self.baseline + looksAdjMax + heightAdjMax + ethnicityAdj, maxAdj]
 
 
-def findMaxAdj(looks, height, ethnicity):
+def findMaxAdj(looks, height, ethnicity, api_mode):
     """
-    Finds the maximum adjustment amongst all parameters and prompt on what is the biggest influencer on income needed to
+    Finds the maximum adjustment amongst all parameters and prompt on what is the biggest influence on income needed to
     be as desirable
     :param looks: looksAdjMax
     :param height: heightAdjMax
-    :param ethnicity: ethinicityAdj
+    :param ethnicity: ethnicityAdj
     :return: prompts only, but may also return the amount if needed (currently not used)
     """
     if looks > height and looks > ethnicity:
-        print("$" + str(
-            looks) + " of the increase in income are compensating for your lack of looks compared to your target")
-        return looks
+        if not api_mode:
+            print("$" + str(looks)
+                  + " of the increase in income are compensating for your lack of looks compared to your target")
+        return "looks", looks
     elif height > looks and height > ethnicity:
-        print("$" + str(height) + " of the increase in income are compensating for your lack of height")
-        return height
+        if not api_mode:
+            print("$" + str(height) + " of the increase in income are compensating for your lack of height")
+        return "height", height
     elif ethnicity > looks and ethnicity > height:
-        print("Unfortunately, your race is less desired by members of your target's race and you must make $"
-              + ethnicity + " more per year to be desirable.")
-        return ethnicity
+        if not api_mode:
+            print("Unfortunately, your race is less desired by members of your target's race and you must make $"
+                + ethnicity + " more per year to be desirable.")
+        return "ethnicity", ethnicity
