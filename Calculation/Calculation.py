@@ -103,6 +103,7 @@ def findMaxAdj(looks, height, ethnicity, api_mode):
     """
     Finds the maximum adjustment amongst all parameters and prompt on what is the biggest influence on income needed to
     be as desirable
+    :param api_mode: prevents printing messages to console
     :param looks: looksAdjMax
     :param height: heightAdjMax
     :param ethnicity: ethnicityAdj
@@ -122,3 +123,7 @@ def findMaxAdj(looks, height, ethnicity, api_mode):
             print("Unfortunately, your race is less desired by members of your target's race and you must make $"
                 + ethnicity + " more per year to be desirable.")
         return "ethnicity", ethnicity
+    else:
+        if not api_mode:
+            print("All attributes are equal")
+        return "equal", 0
