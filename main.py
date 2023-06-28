@@ -2,7 +2,7 @@ import readCSV
 from Calculation import Calculation
 import locale
 import argparse
-import json
+import simplejson
 
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
@@ -105,10 +105,11 @@ if __name__ == '__main__':
     output = c1.Calculate(API_MODE)
 
     if API_MODE:
+
         output = {
             "result": output
         }
-        print(json.dumps(output))
+        print(simplejson.dumps(output, ignore_nan=True))
 
     else:
         print("For a " + str(height) + " inches tall " + sex + " who is " + ethnicity + " and a " + str(
